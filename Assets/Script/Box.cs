@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    public bool m_OnCross;
     public bool Move(Vector2 direction)
     {
         if (BoxBlocked(transform.position, direction))
@@ -13,7 +14,7 @@ public class Box : MonoBehaviour
         else
         {
             transform.Translate(direction);
-            //TestForOnCross();
+            TestForOnCross();
             return true;
         }
     }
@@ -40,4 +41,22 @@ public class Box : MonoBehaviour
 
         return false;
     }
+
+    void TestForOnCross()
+    {
+        GameObject[] crosses = GameObject.FindGameObjectsWithTag("Cross");
+        foreach(var cross in crosses)
+        {
+            if(transform.position.x==cross.transform.position.x&& transform.position.y == cross.transform.position.y)
+            {
+                GetComponent<SpriteRenderer>().color = Color.red;
+                m_OnCross = true;
+                return;
+            }
+        }
+        GetComponent<SpriteRenderer>().color = Color.white;
+        m_OnCross = false;
+    }
+
+
 }

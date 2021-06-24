@@ -45,7 +45,7 @@ public class Levels : MonoBehaviour
         }
         string completeText = textAsset.text;
         string[] lines;
-        lines = completeText.Split(new string[] { "/n" }, System.StringSplitOptions.None);
+        lines = completeText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
         m_Levels.Add(new Level());
         for (long i= 0; i < lines.LongLength; i++)
         {
